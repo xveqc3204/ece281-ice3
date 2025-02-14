@@ -41,15 +41,28 @@ begin
 	-- Implement the test plan here.  Body of process is continuously from time = 0  
 	test_process : process 
 	begin
-	
 	   -- Test all zeros input
 	   w_addends <= x"00"; w_Cin <= '0'; wait for 10 ns;
 	       assert (w_sum = x"0" and w_Cout = '0') report "bad with zeros" severity failure;
        -- Test all ones input
        w_addends <= x"FF"; w_Cin <= '1'; wait for 10 ns;
 	       assert (w_sum = x"F" and w_Cout = '1') report "bad with ones" severity failure;
-       -- TODO, a few other test cases
-	
+       
+       w_addends <= x"00"; w_Cin <= '1'; wait for 10 ns;
+	       assert (w_sum = x"1" and w_Cout = '0') report "FAILED: 0 + 0 + Cin case" severity failure;
+       w_addends <= x"79"; w_Cin <= '0'; wait for 10 ns;
+	       assert (w_sum = x"0" and w_Cout = '1') report "FAILED: 7 + 9 case" severity failure;
+       w_addends <= x"35"; w_Cin <= '0'; wait for 10 ns;
+	       assert (w_sum = x"8" and w_Cout = '0') report "FAILED: 3 + 5 case" severity failure;
+       w_addends <= x"69"; w_Cin <= '1'; wait for 10 ns;
+	       assert (w_sum = x"0" and w_Cout = '1') report "FAILED: 6 + 9 + Cin case" severity failure;
+       w_addends <= x"5A"; w_Cin <= '1'; wait for 10 ns;
+	       assert (w_sum = x"0" and w_Cout = '1') report "FAILED: 5 + A + Cin case" severity failure;
+       w_addends <= x"0F"; w_Cin <= '0'; wait for 10 ns;
+           assert (w_sum = x"F" and w_Cout = '0') report "FAILED: 0 + F case" severity failure; 
+       w_addends <= x"F0"; w_Cin <= '0'; wait for 10 ns;
+           assert (w_sum = x"F" and w_Cout = '0') report "FAILED: F + 0 case" severity failure;
+	   
 		wait; -- wait forever
 	end process;	
 	-----------------------------------------------------	
