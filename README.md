@@ -24,3 +24,5 @@ If any of the `assert` statements fail then GHDL will cease the simulation and e
 Assert statements of other severity levels will be reported, but not fail the workflow.
 
 Sketch for ICE3: ![PNG Attached Here](image.png)
+
+Waveform Picture ![Waveform PNG Attached Here](image-1.png)
